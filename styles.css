@@ -1,0 +1,198 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        
+body {
+    font-family: 'Inter', sans-serif;
+}
+
+.clipboard-shadow {
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.3),
+                0 0 0 1px rgba(255, 255, 255, 0.2),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.paper-texture {
+    background: rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    background-image: 
+        linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px),
+        linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px);
+    background-size: 20px 20px;
+}
+
+.clip-metal {
+    background: linear-gradient(145deg, #c0c0c0, #a8a8a8);
+    box-shadow: inset 2px 2px 5px #8a8a8a, inset -2px -2px 5px #d4d4d4;
+}
+
+.typewriter {
+    overflow: hidden;
+    border-right: 2px solid #3b82f6;
+    white-space: nowrap;
+    animation: typing 1s steps(20), blink-caret 0.75s step-end;
+}
+
+@keyframes typing {
+    from { width: 0 }
+    to { width: 50% }
+}
+
+@keyframes blink-caret {
+    from, to { border-color: transparent }
+    50% { border-color: #3b82f6 }
+}
+
+.float-animation {
+    animation: float 6s ease-in-out infinite;
+}
+        
+@keyframes float {
+    0%, 100% { transform: translateY(0px) }
+    50% { transform: translateY(-10px) }
+}
+
+.slide-in {
+    animation: slideIn 0.8s ease-out forwards;
+    opacity: 0;
+    transform: translateY(30px);
+}
+
+@keyframes slideIn {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.hover-scale {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.hover-scale:hover {
+    transform: scale(1.02);
+}
+
+.glass-effect {
+    backdrop-filter: blur(16px);
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.glass-effect-menu {
+    backdrop-filter: blur(12px);
+    background: rgba(255, 255, 255, 0.4); 
+    border: 1px solid rgba(200, 200, 200, 0.3);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.sticky-note {
+    background: linear-gradient(135deg, #fef3c7, #fde68a);
+    transform: rotate(0deg);
+    transition: all 0.3s ease;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.sticky-note:nth-child(2) {
+    transform: rotate(0deg);
+    background: linear-gradient(135deg, #ddd6fe, #c4b5fd);
+}
+
+.sticky-note:nth-child(3) {
+    transform: rotate(0deg);
+    background: linear-gradient(135deg, #fecaca, #fca5a5);
+}
+
+.sticky-note:hover {
+    transform: rotate(0deg) scale(1.05);
+    z-index: 10;
+}
+
+/* Mobile responsive typewriter */
+@media (max-width: 640px) {
+          .typewriter {
+              animation: typing-mobile 1s steps(10), blink-caret 0.75s step-end infinite;
+              font-size: 1.5rem;
+          }
+          
+          @keyframes typing-mobile {
+		from { width: 0 }
+		to { width: 10ch }
+          }
+          
+          .float-animation {
+              animation: none;
+          }
+          
+          .sticky-note:hover {
+              transform: rotate(0deg) scale(1.00);
+          }
+        }
+
+/* Hamburger menu animation */
+.hamburger {
+    cursor: pointer;
+    width: 24px;
+    height: 24px;
+    transition: all 0.25s;
+    position: relative;
+}
+
+.hamburger-top,
+.hamburger-middle,
+.hamburger-bottom {
+    position: absolute;
+    width: 24px;
+    height: 2px;
+    top: 0;
+    left: 0;
+    background: currentColor;
+    transform: rotate(0);
+    transition: all 0.5s;
+}
+
+.hamburger-middle {
+    transform: translateY(7px);
+}
+
+.hamburger-bottom {
+    transform: translateY(14px);
+}
+
+.open .hamburger-top {
+    transform: rotate(45deg) translateY(6px) translateX(6px);
+}
+
+.open .hamburger-middle {
+    display: none;
+}
+
+.open .hamburger-bottom {
+    transform: rotate(-45deg) translateY(6px) translateX(-6px);
+}
+
+/* Mobile menu slide animation */
+.mobile-menu-enter {
+    opacity: 0;
+    transform: translateY(-10px);
+}
+
+.mobile-menu-enter-active {
+    opacity: 1;
+    transform: translateY(0);
+    transition: all 0.3s ease-out;
+}
+
+.mobile-menu-exit {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.mobile-menu-exit-active {
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: all 0.3s ease-in;
+}
