@@ -1,5 +1,4 @@
 const createElement = (tag, props = {}, children = []) => {
-  
   const element = document.createElement(tag);
   Object.entries(props).forEach(([key, value]) => {
     if (key === 'className') element.className = value;
@@ -315,4 +314,5 @@ document.addEventListener('DOMContentLoaded', () => {
   setupModalClose();
   router();
 });
+
 
