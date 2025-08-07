@@ -146,17 +146,6 @@ const routes = {
   },
   '/work': async () => {
     const mainContent = document.getElementById('main-content');
-    if (projectsData.length === 0) {
-      projectsData = await fetchData('work/projects.json');
-    }
-    mainContent.innerHTML = `
-      <div class="flex flex-col items-center justify-center min-h-screen pt-20 px-2 sm:px-4 pb-16">
-        <h1 class="text-3xl font-bold text-gray-800 mb-8">My Works</h1>
-        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 max-w-7xl w-full">
-          ${projectsData.map(createGlassCard).join('')}
-        </div>
-      </div>
-    `;
   };
 const router = () => {
   const hash = window.location.hash.slice(1) || '/';
@@ -314,5 +303,6 @@ document.addEventListener('DOMContentLoaded', () => {
   setupModalClose();
   router();
 });
+
 
 
