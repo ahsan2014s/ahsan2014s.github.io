@@ -1,11 +1,9 @@
-// main.js
-
-// Functional utilities
 const createElement = (tag, props = {}, children = []) => {
   const element = document.createElement(tag);
   Object.entries(props).forEach(([key, value]) => {
     if (key === 'className') element.className = value;
     else if (key === 'innerHTML') element.innerHTML = value;
+    else if (key === 'textContent') element.textContent = value;
     else element.setAttribute(key, value);
   });
   children.forEach(child => element.appendChild(child));
@@ -119,44 +117,84 @@ const showContactModal = () => {
   });
 };
 
-// Project data (modular and scalable)
-const projects = {
-  hospital: {
-    name: 'Hospital Management System',
-    description: 'A full-featured Hospital management system with payment integration, user authentication, admin and user dashboard. This project aimed to seamlessly connect remote and on-site patients, hospital services, and doctors all together.',
-    status: 'In Progress',
-    technologies: 'React, Express, MongoDB, Stripe, REST API, Passport',
-    duration: '4 months',
-    repo: 'https://github.com/ahsan2014s/Hospital-Management'
-  },
-  snn: {
-    name: 'Spiking Neural Network Optimization',
-    description: 'Spiking Neural network resembles how our neural network processes data. We are implementing some optimizations.',
-    status: 'In Progress',
-    technologies: 'Python, TensorFlow, Scikit, NLP',
-    duration: '6 months',
-    repo: 'https://github.com/ahsan2014s/snn-optimization' // Placeholder; replace with actual link when available
-  },
-  dataset: {
-    name: 'Large Dataset for Bangla',
-    description: 'A very large dataset for Bangla with emotion and tone classifiers.',
-    status: 'Planned',
-    technologies: 'CSV, Distillation',
-    duration: '6 months',
-    repo: 'https://github.com/ahsan2014s/bangla-dataset' // Placeholder; replace with actual link when available
+// Global variable for projects data
+let projectsData = [];
+
+// Function to fetch JSON
+const fetchData = async (url) => {
+  try {
+    const response = await fetch(url);
+    if (!response.ok) throw new Error('Network response was not ok');
+    return await response.json();
+  } catch (error) {
+    console.error('Error fetching data:', error);
+    return [];
   }
+};
+
+const routes = {
+  '/': async () => {
+    if (projectsData.length === 0) {
+      projectsData = await fetchData('work/projects.json');
+    }
+    const top3 = projectsData.slice(0, 3);
+    renderWorkGrid(top3);
+  },
+  '/research': () => {
+    const mainContent = document.getElementById('main-content');
+    mainContent.innerHTML = '<div class="text-center p-8"><h2>Research Section</h2><p>Content coming soon.</p></div>';
+  },
+  '/work': async () => {
+    const mainContent = document.getElementById('main-content');
+    if (projectsData.length === 0) {
+      projectsData = await fetchData('work/projects.json');
+    }
+    mainContent.innerHTML = `
+      <div class="flex flex-col items-center justify-center min-h-screen pt-20 px-2 sm:px-4 pb-16">
+        <h1 class="text-3xl font-bold text-gray-800 mb-8">My Works</h1>
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 max-w-7xl w-full">
+          ${projectsData.map(createGlassCard).join('')}
+        </div>
+      </div>
+    `;
+  };
+const router = () => {
+  const hash = window.location.hash.slice(1) || '/';
+  const path = hash.startsWith('/') ? hash : `/${hash}`;
+  const routeHandler = routes[path] || routes['/'];
+  routeHandler();
+};
+
+// Setup router
+const setupRouter = () => {
+  window.addEventListener('hashchange', router);
+  window.addEventListener('load', router);
+};
+
+// Function to render top 3 sticky notes on home
+const renderWorkGrid = (projects) => {
+  const grid = document.getElementById('work-grid');
+  if (!grid) return;
+  grid.innerHTML = '';
+  const colors = ['bg-yellow-600', 'bg-purple-600', 'bg-red-600'];
+  projects.forEach((proj, index) => {
+    const note = document.createElement('div');
+    note.className = 'sticky-note p-3 sm:p-4 rounded-lg relative';
+    note.dataset.project = proj.name.toLowerCase().replace(/\s+/g, '-');
+    note.innerHTML = `
+      <h4 class="font-semibold text-gray-800 text-xs sm:text-sm mb-1 sm:mb-2">${proj.name}</h4>
+      <p class="text-gray-700 text-xs">${proj.description}</p>
+      <div class="absolute top-2 right-2 w-2 h-2 ${colors[index % colors.length]} rounded-full"></div>
+    `;
+    grid.appendChild(note);
+  });
+
+  setupProjects();
 };
 
 // Project modal
 const showProjectModal = (projectKey) => {
-  const details = projects[projectKey] || {
-    name: 'Unknown Project',
-    description: 'Details not available.',
-    status: 'Unknown',
-    technologies: 'N/A',
-    duration: 'N/A',
-    repo: '#'
-  };
+  const details = projectsData.find(p => p.name.toLowerCase().replace(/\s+/g, '-') === projectKey)
 
   const modal = createElement('div', {
     className: 'fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 backdrop-blur-sm px-4'
@@ -228,7 +266,6 @@ const setupScrollAnimations = () => {
   document.querySelectorAll('.slide-in').forEach(el => observer.observe(el));
 };
 
-// Smooth scrolling for anchor links
 const setupSmoothScrolling = () => {
   const anchors = Array.from(document.querySelectorAll('a[href^="#"]'));
   addEventListeners(anchors, 'click', (e) => {
@@ -240,34 +277,6 @@ const setupSmoothScrolling = () => {
   });
 };
 
-// Basic router for endpoints (modular and scalable)
-const routes = {
-  '/': () => {
-  },
-  '/research': () => {
-    // Placeholder for research content (to be implemented later)
-    const mainContent = document.getElementById('main-content');
-    mainContent.innerHTML = '<div class="text-center p-8"><h2>Research Section</h2><p>Content coming soon.</p></div>';
-  },
-  '/work': () => {
-    // Placeholder for work content (to be implemented later)
-    const mainContent = document.getElementById('main-content');
-    mainContent.innerHTML = '<div class="text-center p-8"><h2>Works Section</h2><p>Content coming soon.</p></div>';
-  }
-};
-
-const router = () => {
-  const path = window.location.hash.slice(1) || '/';
-  const routeHandler = routes[path] || routes['/'];
-  routeHandler();
-};
-
-// Setup router
-const setupRouter = () => {
-  window.addEventListener('hashchange', router);
-  window.addEventListener('load', router);
-};
-
 // Close modals on Escape
 const setupModalClose = () => {
   document.addEventListener('keydown', (e) => {
@@ -276,6 +285,18 @@ const setupModalClose = () => {
     }
   });
 };
+
+const createGlassCard = (item) => `
+  <div class="relative perspective-1000 group">
+    <div class="w-full h-64 bg-white bg-opacity-10 backdrop-blur-md rounded-xl shadow-lg border border-white border-opacity-20 p-6 transform transition-all duration-500 group-hover:rotate-y-10 group-hover:scale-105">
+      <h3 class="text-xl font-bold text-gray-800 mb-2">${item.name}</h3>
+      <p class="text-gray-600 mb-4">${item.description}</p>
+      <p class="text-sm text-gray-500">Status: ${item.status}</p>
+      <p class="text-sm text-gray-500">Technologies: ${item.technologies}</p>
+      <a href="${item.repo}" class="mt-4 inline-block bg-gradient-to-r from-blue-500 to-purple-600 text-white px-4 py-2 rounded-lg">View Project</a>
+    </div>
+  </div>
+`;
 
 // Loading animation
 window.addEventListener('load', () => {
@@ -291,4 +312,5 @@ document.addEventListener('DOMContentLoaded', () => {
   setupSmoothScrolling();
   setupRouter();
   setupModalClose();
+  router();
 });
