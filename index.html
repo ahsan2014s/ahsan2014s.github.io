@@ -76,31 +76,9 @@
                         <div class="space-y-6 sm:space-y-8">
                             
                             <!-- My Work Section with Sticky Notes -->
-                            <div class="slide-in" style="animation-delay: 0.4s;">
-                                <h3 class="text-lg sm:text-xl font-semibold text-blue-600 mb-3 sm:mb-4 flex items-center">
-                                    <div class="w-5 h-5 sm:w-6 sm:h-6 mr-2 sm:mr-3 bg-blue-500 rounded-full flex items-center justify-center">
-                                        <div class="w-2 sm:w-3 h-2 sm:h-3 bg-white rounded"></div>
-                                    </div>
-                                    Work
-                                </h3>
-                                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 mb-4 sm:mb-6">
-                                    <div class="sticky-note p-3 sm:p-4 rounded-lg relative" data-project="hospital">
-                                        <h4 class="font-semibold text-gray-800 text-xs sm:text-sm mb-1 sm:mb-2">Hospital Management System</h4>
-                                        <p class="text-gray-700 text-xs">Full-stack React app with payment integration</p>
-                                        <div class="absolute top-2 right-2 w-2 h-2 bg-yellow-600 rounded-full"></div>
-                                    </div>
-                                    <div class="sticky-note p-3 sm:p-4 rounded-lg relative" data-project="snn">
-                                        <h4 class="font-semibold text-gray-800 text-xs sm:text-sm mb-1 sm:mb-2">Spiking Neural Network Optimization</h4>
-                                        <p class="text-gray-700 text-xs">Machine learning Algorithm Optimization</p>
-                                        <div class="absolute top-2 right-2 w-2 h-2 bg-purple-600 rounded-full"></div>
-                                    </div>
-                                    <div class="sticky-note p-3 sm:p-4 rounded-lg relative sm:col-span-2 lg:col-span-1" data-project="dataset">
-                                        <h4 class="font-semibold text-gray-800 text-xs sm:text-sm mb-1 sm:mb-2">Large Dataset for Bangla</h4>
-                                        <p class="text-gray-700 text-xs">A large dataset for LLM based on Bangla Language</p>
-                                        <div class="absolute top-2 right-2 w-2 h-2 bg-red-600 rounded-full"></div>
-                                    </div>
+                            <div id="work-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 mb-4 sm:mb-6">
+                                                <!-- Sticky notes will be dynamically inserted here -->
                                 </div>
-                            </div>
                             
                             <!-- Interests Section -->
                             <div class="slide-in hover-scale" style="animation-delay: 0.6s;">
@@ -217,3 +195,4 @@
     <script src="main.js" defer></script>
 </body>
 </html>
+
