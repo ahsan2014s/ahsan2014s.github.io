@@ -18,12 +18,12 @@
                 </div>
                 <div class="hidden md:block">
                     <div class="ml-10 flex items-baseline space-x-8">
-                        <a href="#/research" class="text-gray-800 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-300 hover-scale">Research</a>
-                        <a href="#/work" class="text-gray-800 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-300 hover-scale">Works</a>
+                        <a href="/research" class="text-gray-800 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-300 hover-scale">Research</a>
+                        <a href="/work" class="text-gray-800 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-300 hover-scale">Works</a>
                         <a href="https://dev.to/ahsan2014s" class="text-gray-800 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-300 hover-scale">Blogs</a>
                         <a href="mailto:anikahsan1225@protonmail.com" class="text-gray-800 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-300 hover-scale">Contact</a>
                     </div>
-               </div>
+                </div>
                 <div class="md:hidden">
                     <button id="mobile-menu-btn" class="hamburger text-gray-800 hover:text-blue-600 focus:outline-none focus:text-blue-600">
                         <div class="hamburger-top"></div>
@@ -37,8 +37,8 @@
         <!-- Mobile menu -->
         <div id="mobile-menu" class="md:hidden absolute top-16 left-0 w-full z-40 glass-effect-menu transform transition-all duration-300 ease-out opacity-0 -translate-y-2 pointer-events-none">
             <div class="px-2 pt-2 pb-3 space-y-1">
-                <a href="#/research" class="text-gray-800 hover:text-blue-600 hover:bg-blue-50 block px-3 py-2 rounded-md text-base font-medium transition-all duration-200">Research</a>
-                <a href="#/work" class="text-gray-800 hover:text-blue-600 hover:bg-blue-50 block px-3 py-2 rounded-md text-base font-medium transition-all duration-200">Works</a>
+                <a href="/research" class="text-gray-800 hover:text-blue-600 hover:bg-blue-50 block px-3 py-2 rounded-md text-base font-medium transition-all duration-200">Research</a>
+                <a href="/work" class="text-gray-800 hover:text-blue-600 hover:bg-blue-50 block px-3 py-2 rounded-md text-base font-medium transition-all duration-200">Works</a>
                 <a href="https://dev.to/ahsan2014s" class="text-gray-800 hover:text-blue-600 hover:bg-blue-50 block px-3 py-2 rounded-md text-base font-medium transition-all duration-200">Blogs</a>
                 <a href="mailto:anikahsan1225@protonmail.com" class="text-gray-800 hover:text-blue-600 hover:bg-blue-50 block px-3 py-2 rounded-md text-base font-medium transition-all duration-200">Contact</a>
             </div>
@@ -83,24 +83,9 @@
                                     </div>
                                     Work
                                 </h3>
-                                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 mb-4 sm:mb-6">
-                                    <div class="sticky-note p-3 sm:p-4 rounded-lg relative" data-project="hospital">
-                                        <h4 class="font-semibold text-gray-800 text-xs sm:text-sm mb-1 sm:mb-2">Hospital Management System</h4>
-                                        <p class="text-gray-700 text-xs">Full-stack React app with payment integration</p>
-                                        <div class="absolute top-2 right-2 w-2 h-2 bg-yellow-600 rounded-full"></div>
-                                    </div>
-                                    <div class="sticky-note p-3 sm:p-4 rounded-lg relative" data-project="snn">
-                                        <h4 class="font-semibold text-gray-800 text-xs sm:text-sm mb-1 sm:mb-2">Spiking Neural Network Optimization</h4>
-                                        <p class="text-gray-700 text-xs">Machine learning Algorithm Optimization</p>
-                                        <div class="absolute top-2 right-2 w-2 h-2 bg-purple-600 rounded-full"></div>
-                                    </div>
-                                    <div class="sticky-note p-3 sm:p-4 rounded-lg relative sm:col-span-2 lg:col-span-1" data-project="dataset">
-                                        <h4 class="font-semibold text-gray-800 text-xs sm:text-sm mb-1 sm:mb-2">Large Dataset for Bangla</h4>
-                                        <p class="text-gray-700 text-xs">A large dataset for LLM based on Bangla Language</p>
-                                        <div class="absolute top-2 right-2 w-2 h-2 bg-red-600 rounded-full"></div>
-                                    </div>
-                                </div>
-                            </div>
+                                <div id="work-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 mb-4 sm:mb-6">
+										<!-- Sticky notes will be dynamically inserted here -->
+								</div>
                             
                             <!-- Interests Section -->
                             <div class="slide-in hover-scale" style="animation-delay: 0.6s;">
@@ -217,4 +202,3 @@
     <script src="main.js" defer></script>
 </body>
 </html>
-
