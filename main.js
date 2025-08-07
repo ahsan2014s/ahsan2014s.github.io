@@ -135,7 +135,7 @@ const fetchData = async (url) => {
 const routes = {
   '/': async () => {
     if (projectsData.length === 0) {
-      projectsData = await fetchData('work/projects.json');
+      projectsData = await fetchData('/work/projects.json');
     }
     const top3 = projectsData.slice(0, 3);
     renderWorkGrid(top3);
@@ -303,6 +303,7 @@ document.addEventListener('DOMContentLoaded', () => {
   setupModalClose();
   router();
 });
+
 
 
 
