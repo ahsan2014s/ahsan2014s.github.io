@@ -1,4 +1,4 @@
-// /work/work.js (functional programming to parse JSON and create cards)
+
 document.addEventListener('DOMContentLoaded', async () => {
   const createElement = (tag, props = {}, children = []) => {
     const element = document.createElement(tag);
@@ -41,3 +41,4 @@ document.addEventListener('DOMContentLoaded', async () => {
     console.error('Error loading projects:', error);
   }
 });
+
